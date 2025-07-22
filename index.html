@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" class="transition duration-300">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Profile Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .dark body { background-color: #1f2937; color: #f9fafb; }
+    .dark .card { background-color: #374151; color: #f9fafb; }
+    .dark p, .dark span, .dark h1, .dark h2, .dark h3, .dark h4, .dark a {
+      color: #f9fafb !important;
+    }
+    .dark input, .dark button { color: #f9fafb; }
+  </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 font-sans transition duration-300">
+
+<div class="min-h-screen flex flex-col items-center py-10 px-4">
+  <h1 class="text-4xl font-bold text-blue-700 dark:text-blue-300 mb-6">🔍 GitHub Profile Dashboard</h1>
+
+  <button id="themeToggle" class="mb-6 text-sm bg-gray-200 dark:bg-gray-700 px-4 py-1 rounded">
+    🌓 Toggle Dark Mode
+  </button>
+
+  <div class="w-full max-w-md flex gap-2 mb-6">
+    <input id="usernameInput" type="text" placeholder="Enter GitHub username"
+      class="flex-1 px-4 py-2 rounded border border-gray-300 dark:bg-gray-800 dark:border-gray-600 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+    <button id="searchBtn" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Search</button>
+  </div>
+
+  <p id="loading" class="hidden text-blue-500">⏳ Loading...</p>
+  <p id="errorMsg" class="hidden text-red-500">❌ User not found. Please try another username.</p>
+
+  <div id="profileCard" class="w-full max-w-5xl hidden">
+    <div class="card rounded-lg shadow-md p-6 flex flex-col md:flex-row gap-6">
+      <img id="avatar" class="w-32 h-32 rounded-full border-4 border-blue-500">
+      <div class="flex-1">
+        <h2 id="name" class="text-2xl font-bold">Name</h2>
+        <p id="username">@username</p>
+        <p id="bio" class="italic mt-2">Bio</p>
+        <div class="mt-3 space-y-1 text-sm">
+          <p id="location">📍 Location</p>
+          <p id="company">🏢 Company</p>
+          <p id="blog">🌍 Blog</p>
+          <p id="twitter">🐦 Twitter</p>
+          <p id="joined">📅 Joined</p>
+          <p id="streak">🔥 Contribution Streak: (via heatmap)</p>
+          <p id="age">⏳ Account age: </p>
+        </div>
+        <div class="mt-4 flex flex-wrap gap-4 text-sm font-medium">
+          <span>📦 <span id="repos"></span> Repos</span>
+          <span>👥 <span id="followers"></span> Followers</span>
+          <span>🔁 <span id="following"></span> Following</span>
+        </div>
+        <a id="profileLink" href="#" target="_blank" class="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">GitHub Profile →</a>
+      </div>
+    </div>
+
+    <div class="mt-10 text-center">
+      <h3 class="text-xl font-semibold mb-2">🔥 Contribution Heatmap</h3>
+      <img id="ghChart" class="mx-auto border rounded" alt="Heatmap">
+    </div>
+
+    <div id="topRepoList" class="mt-10">
+      <h3 class="text-xl font-semibold mb-4">📌 Top 6 Repositories</h3>
+      <ul id="topReposContainer" class="grid md:grid-cols-2 gap-4"></ul>
+    </div>
+
+    <div id="readmeContainer" class="mt-6 p-4 border rounded bg-white dark:bg-gray-800 hidden">
+      <h3 class="text-lg font-semibold mb-2 dark:text-white">📄 README Preview</h3>
+      <div id="readmeContent" class="prose dark:prose-invert max-w-none overflow-auto text-sm"></div>
+    </div>
+
+    <div id="repoList" class="mt-10">
+      <h3 class="text-xl font-semibold mb-4">📁 All Public Repositories</h3>
+      <ul id="reposContainer" class="grid md:grid-cols-2 gap-4"></ul>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
